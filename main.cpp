@@ -17,13 +17,14 @@ void do_write(tcp::socket& tcp_socket,yield_context yield) {
     string cr = "\r\n";
     string OK = "200 OK";
     string text = "text/html;";
+    string charset = "charset=utf-8";
 
     string data = "";
     data += "HTTP/1.1 " + OK + cr;
     data += "Server: Tabula content server/0.0.1" + cr;
     data += "Content-Length: " + to_string(content.length()) + cr;
     data += "Connnection: close" + cr;
-    data += "Content-Type: " + text + cr + cr;
+    data += "Content-Type: " + text + " " + charset + cr + cr;
     data += content;
     async_write(tcp_socket, buffer(data), yield);
     tcp_socket.shutdown(tcp::socket::shutdown_send);
