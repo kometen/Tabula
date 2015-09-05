@@ -1,0 +1,3 @@
+A simpel content server written in C++ using boost asio library. Very basic atm.
+
+After basic functionality is in place I'll add html-buttons, forms etc.
