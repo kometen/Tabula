@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.2.3)
 project(Tabula)
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
