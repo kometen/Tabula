@@ -4,6 +4,8 @@
 #include <boost/asio/write.hpp>
 #include <boost/asio/ip/tcp.hpp>
 
+#include "Button.h"
+
 using namespace std;
 using namespace boost::asio;
 using namespace boost::asio::ip;
@@ -13,7 +15,10 @@ tcp::endpoint tcp_endpoint {tcp::v4(), 1967};
 tcp::acceptor tcp_acceptor {ioservice, tcp_endpoint};
 
 void do_write(tcp::socket& tcp_socket,yield_context yield) {
-    string content = "Bl&aring;b&aelig;rsyltet&oslash;j er <b>godt</b>";
+    Button button {"Syltetøj"};
+    string content = "";
+    content += "Bl&aring;b&aelig;rsyltet&oslash;j er <b>godt</b>";
+    content += button.getElement();
     string cr = "\r\n";
     string OK = "200 OK";
     string text = "text/html;";
