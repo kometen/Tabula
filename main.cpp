@@ -5,6 +5,7 @@
 #include <boost/asio/ip/tcp.hpp>
 
 #include "Button.h"
+#include "Input.h"
 
 using namespace std;
 using namespace boost::asio;
@@ -16,13 +17,15 @@ tcp::acceptor tcp_acceptor {ioservice, tcp_endpoint};
 
 void do_write(tcp::socket& tcp_socket,yield_context yield) {
     Button button {"Syltetøj"};
+    Input field {"text"};
     string content = "";
-    content += "Bl&aring;b&aelig;rsyltet&oslash;j er <b>godt</b>";
+    content += "Blåbærsyltetøj er <b>godt</b>";
     content += button.getElement();
-    string cr = "\r\n";
-    string OK = "200 OK";
-    string text = "text/html;";
-    string charset = "charset=utf-8";
+    content += field.getElement();
+    const string cr = "\r\n";
+    const string OK = "200 OK";
+    const string text = "text/html;";
+    const string charset = "charset=utf-8";
 
     string data = "";
     data += "HTTP/1.1 " + OK + cr;
