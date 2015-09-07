@@ -17,14 +17,21 @@ tcp::endpoint tcp_endpoint {tcp::v4(), 1967};
 tcp::acceptor tcp_acceptor {ioservice, tcp_endpoint};
 
 void do_write(tcp::socket& tcp_socket,yield_context yield) {
-    Form form {"test.js"};
-    Button button {"Syltetøj"};
-    Input field {"text"};
+    Form form {"user"};
+    Input button {"submit"};
+    button.setValue("OK");
+    Input firstname {"text"};
+    Input lastname {"text"};
+
     string content = "";
-    content += "Blåbærsyltetøj er <b>godt</b><br>";
     content += form.getOpeningElement();
-    content += button.getElement();
-    content += field.getElement();
+    content += "Fornavn:<br>";
+    content += firstname.getElement();
+    content += "<br>";
+    content += "Efternavn:<br>";
+    content += lastname.getElement();
+    content += "<br>";
+    content += button.getButton();
     content += form.getClosingElement();
     const string cr = "\r\n";
     const string OK = "200 OK";

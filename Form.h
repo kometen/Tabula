@@ -16,8 +16,8 @@ public:
     Form(std::string action) : action(action) {}
     ~Form();
 
-    const std::string getOpeningElement();
-    const std::string getClosingElement();
+    std::string getOpeningElement();
+    std::string getClosingElement();
 };
 
 

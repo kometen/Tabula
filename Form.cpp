@@ -6,7 +6,7 @@
 
 Form::~Form() { }
 
-const std::string Form::getOpeningElement() {
+std::string Form::getOpeningElement() {
     std::string data = "";
     data += "<" + htmltag;
     data += " action=\"";
@@ -16,7 +16,7 @@ const std::string Form::getOpeningElement() {
     return data;
 }
 
-const std::string Form::getClosingElement() {
+std::string Form::getClosingElement() {
     std::string data = "";
     data += "</" + htmltag + ">";
 

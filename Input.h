@@ -11,12 +11,16 @@ class Input {
 private:
     const std::string htmltag = "input";
     std::string type;
+    std::string value;
 
 public:
     Input(const std::string type) : type(type) {};
     ~Input();
 
-    const std::string getElement();
+    std::string getButton();
+    std::string getElement();
+
+    void setValue(const std::string value);
 };
 
 #endif //TABULA_INPUT_H
