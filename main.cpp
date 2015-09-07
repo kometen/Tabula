@@ -5,6 +5,7 @@
 #include <boost/asio/ip/tcp.hpp>
 
 #include "Button.h"
+#include "Form.h"
 #include "Input.h"
 
 using namespace std;
@@ -16,12 +17,15 @@ tcp::endpoint tcp_endpoint {tcp::v4(), 1967};
 tcp::acceptor tcp_acceptor {ioservice, tcp_endpoint};
 
 void do_write(tcp::socket& tcp_socket,yield_context yield) {
+    Form form {"test.js"};
     Button button {"Syltetøj"};
     Input field {"text"};
     string content = "";
-    content += "Blåbærsyltetøj er <b>godt</b>";
+    content += "Blåbærsyltetøj er <b>godt</b><br>";
+    content += form.getOpeningElement();
     content += button.getElement();
     content += field.getElement();
+    content += form.getClosingElement();
     const string cr = "\r\n";
     const string OK = "200 OK";
     const string text = "text/html;";
