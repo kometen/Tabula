@@ -4,9 +4,7 @@
 #include <boost/asio/write.hpp>
 #include <boost/asio/ip/tcp.hpp>
 
-#include "Button.h"
-#include "Form.h"
-#include "Input.h"
+#include "Content.h"
 
 using namespace std;
 using namespace boost::asio;
@@ -17,34 +15,8 @@ tcp::endpoint tcp_endpoint {tcp::v4(), 1967};
 tcp::acceptor tcp_acceptor {ioservice, tcp_endpoint};
 
 void do_write(tcp::socket& tcp_socket,yield_context yield) {
-    Form form {"user"};
-    Input button {"submit"};
-    button.setValue("OK");
-    Input firstname {"text"};
-    Input lastname {"text"};
-
-    string content = "";
-    content += form.getOpeningElement();
-    content += "Fornavn:<br>";
-    content += firstname.getElement();
-    content += "<br>";
-    content += "Efternavn:<br>";
-    content += lastname.getElement();
-    content += "<br>";
-    content += button.getButton();
-    content += form.getClosingElement();
-    const string cr = "\r\n";
-    const string OK = "200 OK";
-    const string text = "text/html;";
-    const string charset = "charset=utf-8";
-
-    string data = "";
-    data += "HTTP/1.1 " + OK + cr;
-    data += "Server: Tabula content server/0.0.1" + cr;
-    data += "Content-Length: " + to_string(content.length()) + cr;
-    data += "Connnection: close" + cr;
-    data += "Content-Type: " + text + " " + charset + cr + cr;
-    data += content;
+    Content content;
+    string data = content.getContent();
     async_write(tcp_socket, buffer(data), yield);
     tcp_socket.shutdown(tcp::socket::shutdown_send);
 }
