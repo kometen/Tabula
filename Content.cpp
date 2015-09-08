@@ -15,7 +15,6 @@ std::string Content::getContent() {
     Input firstname {"text"};
     Input lastname {"text"};
 
-    std::string content = "";
     content += form.getOpeningElement();
     content += "Fornavn:<br>";
     content += firstname.getElement();
@@ -25,12 +24,7 @@ std::string Content::getContent() {
     content += "<br>";
     content += button.getButton();
     content += form.getClosingElement();
-    const std::string cr = "\r\n";
-    const std::string OK = "200 OK";
-    const std::string text = "text/html;";
-    const std::string charset = "charset=utf-8";
 
-    std::string data = "";
     data += "HTTP/1.1 " + OK + cr;
     data += "Server: Tabula content server/0.0.1" + cr;
     data += "Content-Length: " + std::to_string(content.length()) + cr;

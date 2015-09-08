@@ -11,6 +11,12 @@
 
 class Content {
 private:
+    std::string content = "";
+    std::string data = "";
+    const std::string cr = "\r\n";
+    const std::string OK = "200 OK";
+    const std::string text = "text/html;";
+    const std::string charset = "charset=utf-8";
 
 public:
     Content();

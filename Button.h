@@ -38,8 +38,6 @@ public:
     void setName(const std::string &name);
     void setText(const std::string &text);
     void setType(const std::string &type);
-
-
 };
 
 
