@@ -17,7 +17,7 @@ char bytes[4096];
 
 void do_read(tcp::socket& tcp_socket, yield_context yield) {
     size_t length = tcp_socket.async_read_some(buffer(bytes), yield);
-    cout << "do_read() size: " << length << ", input: " << bytes << endl;
+    cout << "do_read() size: " << length << ", input: " << endl << bytes << endl;
 }
 
 void do_write(tcp::socket& tcp_socket, yield_context yield) {
