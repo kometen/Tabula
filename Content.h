@@ -12,7 +12,7 @@
 class Content {
 private:
     std::string content = "";
-    std::string data = "";
+    std::string header = "";
     const std::string cr = "\r\n";
     const std::string OK = "200 OK";
     const std::string text = "text/html;";

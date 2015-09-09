@@ -25,11 +25,12 @@ std::string Content::getContent() {
     content += button.getButton();
     content += form.getClosingElement();
 
-    data += "HTTP/1.1 " + OK + cr;
-    data += "Server: Tabula content server/0.0.1" + cr;
-    data += "Content-Length: " + std::to_string(content.length()) + cr;
-    data += "Connnection: close" + cr;
-    data += "Content-Type: " + text + " " + charset + cr + cr;
-    data += content;
-    return data;
+    header += "HTTP/1.1 " + OK + cr;
+    header += "Server: Tabula content server/0.0.1" + cr;
+    header += "Content-Length: " + std::to_string(content.length()) + cr;
+    header += "Connnection: close" + cr;
+    header += "Content-Type: " + text + " " + charset + cr + cr;
+
+    header += content;
+    return header;
 }
