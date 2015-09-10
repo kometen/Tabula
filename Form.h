@@ -10,7 +10,11 @@
 class Form {
 private:
     const std::string htmltag = "form";
-    std::string action = "";
+    std::string action;
+    std::string method;
+public:
+    std::string getMethod();
+    void setMethod(std::string method);
 
 public:
     Form(std::string action) : action(action) {}

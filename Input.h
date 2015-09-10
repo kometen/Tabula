@@ -10,6 +10,7 @@
 class Input {
 private:
     const std::string htmltag = "input";
+    std::string name;
     std::string type;
     std::string value;
 
@@ -19,8 +20,10 @@ public:
 
     std::string getButton();
     std::string getElement();
+    std::string getLine();
 
     void setValue(const std::string value);
+    void setName(const std::string name);
 };
 
 #endif //TABULA_INPUT_H

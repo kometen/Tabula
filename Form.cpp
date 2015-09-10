@@ -11,6 +11,9 @@ std::string Form::getOpeningElement() {
     data += "<" + htmltag;
     data += " action=\"";
     data += action;
+    data += "\"";
+    data += " method=\"";
+    data += method;
     data += "\">";
 
     return data;
@@ -21,4 +24,12 @@ std::string Form::getClosingElement() {
     data += "</" + htmltag + ">";
 
     return data;
+}
+
+std::string Form::getMethod() {
+    return method;
+}
+
+void Form::setMethod(const std::string method) {
+    this->method = method;
 }

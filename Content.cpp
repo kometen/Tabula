@@ -10,17 +10,20 @@ Content::~Content() { }
 
 std::string Content::getContent() {
     Form form {"user"};
+    form.setMethod("post");
     Input button {"submit"};
     button.setValue("OK");
     Input firstname {"text"};
+    firstname.setName("firstname");
     Input lastname {"text"};
+    lastname.setName("lastname");
 
     content += form.getOpeningElement();
     content += "Fornavn:<br>";
-    content += firstname.getElement();
+    content += firstname.getLine();
     content += "<br>";
     content += "Efternavn:<br>";
-    content += lastname.getElement();
+    content += lastname.getLine();
     content += "<br>";
     content += button.getButton();
     content += form.getClosingElement();

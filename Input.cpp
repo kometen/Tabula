@@ -23,6 +23,19 @@ std::string Input::getElement() {
     return data;
 }
 
+std::string Input::getLine() {
+    std::string data;
+    data += "<" + htmltag;
+    data += " type=\"" + type + "\"";
+    data += " name=\"" + name+ "\">";
+
+    return data;
+}
+
 void Input::setValue(const std::string value) {
     this->value = value;
+}
+
+void Input::setName(const std::string name) {
+    this->name= name;
 }
