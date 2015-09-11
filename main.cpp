@@ -20,27 +20,24 @@ const string locateContentLength = "Content-Length: ";
 void do_read(tcp::socket& tcp_socket, yield_context yield) {
     size_t length = tcp_socket.async_read_some(buffer(bytes), yield);
     // GET
-    if (bytes[0] == 'G' && bytes[1] == 'E' && bytes[2] == 'T' && bytes[3] == ' ' && bytes[4] == '/') {
+    if (bytes[0] == 'G' && bytes[2] == 'T' && bytes[4] == '/') {
         cout << "GET request" << endl;
     }
     // POST
     unsigned int cl = 0;
     string cls = "";
-    if (bytes[0] == 'P' && bytes[1] == 'O' && bytes[2] == 'S' && bytes[3] == 'T' && bytes[4] == ' ' && bytes[5] == '/') {
+    if (bytes[0] == 'P' && bytes[2] == 'S' && bytes[4] == ' ' && bytes[5] == '/') {
         for (int j = 0; j < BUFSIZE || bytes[j] == '\0'; ++j) {
-            if (bytes[j] == 'C') {
-                if (bytes[j+8] == 'L') {
-                    if (bytes[j+14] == ':') {
-                        for (int k = (j + 16);; ++k) {
-                            if (bytes[k] == '\r') {
-                                break;
-                            }
-                            cls.push_back(bytes[k]);
-                        }
-                        cl = stoi(cls);
-                        cout << "content-length: " << cl << endl;
+            // If Content-Length:
+            if (bytes[j] == 'C' && bytes[j+8] == 'L' && bytes[j+14] == ':') {
+                for (int k = (j + 16);; ++k) {
+                    if (bytes[k] == '\r' || bytes[k] == '\0') {
+                        break;
                     }
+                    cls.push_back(bytes[k]);
                 }
+                cl = stoul(cls);
+                cout << "content-length: " << cl << endl;
             }
         }
         cout << endl << "POST request" << endl << endl;
