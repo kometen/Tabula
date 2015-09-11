@@ -39,8 +39,10 @@ void do_accept(yield_context yield) {
     for (int i = 0; i < 5; ++i) {
         tcp::socket *tcp_socket = new tcp::socket {ioservice};
         tcp_acceptor.async_accept(*tcp_socket, yield);
-        spawn(ioservice, [&] (yield_context yieldReadContent) { do_read(*tcp_socket, yieldReadContent); });
-        spawn(ioservice, [&] (yield_context yieldContent) { do_write(*tcp_socket, yieldContent); });
+//        spawn(ioservice, [&] (yield_context yieldReadContent) { do_read(*tcp_socket, yieldReadContent); });
+//        spawn(ioservice, [&] (yield_context yieldContent) { do_write(*tcp_socket, yieldContent); });
+        spawn(ioservice, [&] (yield_context yield) { do_read(*tcp_socket, yield); });
+        spawn(ioservice, [&] (yield_context yield) { do_write(*tcp_socket, yield); });
     }
 }
 
