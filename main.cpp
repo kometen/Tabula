@@ -15,10 +15,10 @@ io_service ioservice;
 tcp::endpoint tcp_endpoint {tcp::v4(), 1967};
 tcp::acceptor tcp_acceptor {ioservice, tcp_endpoint};
 char bytes[BUFSIZE];
-const string locateContentLength = "Content-Length: ";
 
 void do_read(tcp::socket& tcp_socket, yield_context yield) {
     size_t length = tcp_socket.async_read_some(buffer(bytes), yield);
+    bytes[length] = '\0';
     // GET
     if (bytes[0] == 'G' && bytes[2] == 'T' && bytes[4] == '/') {
         cout << "GET request" << endl;
@@ -36,13 +36,13 @@ void do_read(tcp::socket& tcp_socket, yield_context yield) {
                     }
                     cls.push_back(bytes[k]);
                 }
-                cl = stoul(cls);
+                cl = (unsigned int) stoul(cls);
                 cout << "content-length: " << cl << endl;
             }
         }
         cout << endl << "POST request" << endl << endl;
     }
-    cout << "do_read() size: " << length << ", input: " << endl << endl << bytes << endl << endl;
+    cout << "do_read() START, size: " << length << ", input: " << endl << endl << bytes << endl << endl << "do_read() END" << endl;
 
     for (int j = (length - cl); j < length; ++j) {
         cout << bytes[j];
