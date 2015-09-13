@@ -6,6 +6,7 @@
 #define TABULA_CONTENT_H
 
 #include <string>
+#include "Html.h"
 #include "Input.h"
 #include "Form.h"
 
@@ -16,7 +17,6 @@ private:
     const std::string cr = "\r\n";
     const std::string OK = "200 OK";
     const std::string text = "text/html;";
-    const std::string charset = "charset=utf-8";
 
 public:
     Content();
