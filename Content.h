@@ -9,6 +9,7 @@
 #include "Html.h"
 #include "Input.h"
 #include "Form.h"
+#include "URLrecode.h"
 
 class Content {
 private:

@@ -17,5 +17,5 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
     link_libraries(/usr/local/lib/libboost_coroutine.so)
 endif()
 
-set(SOURCE_FILES main.cpp Button.cpp Button.h Input.cpp Input.h Html.cpp Html.h Form.cpp Form.h Content.cpp Content.h)
+set(SOURCE_FILES main.cpp Button.cpp Button.h Input.cpp Input.h Html.cpp Html.h Form.cpp Form.h Content.cpp Content.h URLrecode.cpp URLrecode.h)
 add_executable(Tabula ${SOURCE_FILES})

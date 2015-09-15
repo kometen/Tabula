@@ -19,6 +19,7 @@ std::string Content::getContent() {
     firstname.setName("firstname");
     Input lastname {"text"};
     lastname.setName("lastname");
+    URLrecode recode {getPostdata()};
 
     content += html.getDoctype();
     content += html.getOpeningHtml();
@@ -34,7 +35,7 @@ std::string Content::getContent() {
     content += button.getButton();
     content += form.getClosingElement();
     content += "<br>";
-    content += getPostdata();
+    content += recode.decode();
     content += html.getClosingBody();
     content += html.getClosingHtml();
 
