@@ -35,6 +35,15 @@ std::string Html::getClosingHtml() {
     return "</" + html + ">";
 }
 
+std::string Html::getHead() {
+    std::string data = "";
+    data += getOpeningHead();
+    data += getSiteTitle();
+    data += getMeta();
+    data += getClosingHead();
+    return data;
+}
+
 std::string Html::getMeta() {
     return meta;
 }

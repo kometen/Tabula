@@ -15,8 +15,12 @@ io_service ioservice;
 tcp::endpoint tcp_endpoint {tcp::v4(), 1967};
 tcp::acceptor tcp_acceptor {ioservice, tcp_endpoint};
 char bytes[BUFSIZE];
+string postdata = "";
+
+void do_write(tcp::socket& tcp_socket, yield_context yield);
 
 void do_read(tcp::socket& tcp_socket, yield_context yield) {
+    postdata.clear();
     size_t length = tcp_socket.async_read_some(buffer(bytes), yield);
     bytes[length] = '\0';
     // GET
@@ -44,15 +48,17 @@ void do_read(tcp::socket& tcp_socket, yield_context yield) {
     }
     cout << "do_read() START, size: " << length << ", input: " << endl << endl << bytes << endl << endl << "do_read() END" << endl;
 
-    for (int j = (length - cl); j < length; ++j) {
-        cout << bytes[j];
+    for (auto j = (length - cl); j < length; ++j) {
+        postdata.append(1, bytes[j]);
     }
-    cout << endl;
+
+    spawn(ioservice, [&] (yield_context yield) { do_write(tcp_socket, yield); });
 }
 
 void do_write(tcp::socket& tcp_socket, yield_context yield) {
     Content content;
     string data = content.getContent();
+    cout << "do_write(), postdata: " << postdata << endl;
     async_write(tcp_socket, buffer(data), yield);
     tcp_socket.shutdown(tcp::socket::shutdown_send);
 }
@@ -62,7 +68,7 @@ void do_accept(yield_context yield) {
         tcp::socket *tcp_socket = new tcp::socket {ioservice};
         tcp_acceptor.async_accept(*tcp_socket, yield);
         spawn(ioservice, [&] (yield_context yield) { do_read(*tcp_socket, yield); });
-        spawn(ioservice, [&] (yield_context yield) { do_write(*tcp_socket, yield); });
+//        spawn(ioservice, [&] (yield_context yield) { do_write(*tcp_socket, yield); });
     }
 }
 

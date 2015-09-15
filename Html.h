@@ -28,6 +28,7 @@ public:
     std::string getClosingHead();
     std::string getOpeningHtml();
     std::string getClosingHtml();
+    std::string getHead();
     std::string getMeta();
     std::string getOpeningTitle();
     std::string getClosingTitle();

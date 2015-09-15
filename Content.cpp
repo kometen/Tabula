@@ -22,10 +22,7 @@ std::string Content::getContent() {
 
     content += html.getDoctype();
     content += html.getOpeningHtml();
-    content += html.getOpeningHead();
-    content += html.getSiteTitle();
-    content += html.getMeta();
-    content += html.getClosingHead();
+    content += html.getHead();
     content += html.getOpeningBody();
     content += form.getOpeningElement();
     content += "Fornavn:<br>";
