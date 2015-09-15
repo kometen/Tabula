@@ -14,6 +14,7 @@ class Content {
 private:
     std::string content = "";
     std::string header = "";
+    std::string postdata = "";
     const std::string cr = "\r\n";
     const std::string OK = "200 OK";
     const std::string text = "text/html;";
@@ -23,6 +24,8 @@ public:
     ~Content();
 
     std::string getContent();
+    void setPostdata(std::string postdata);
+    std::string getPostdata();
 };
 
 

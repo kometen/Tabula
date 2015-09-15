@@ -33,6 +33,8 @@ std::string Content::getContent() {
     content += "<br>";
     content += button.getButton();
     content += form.getClosingElement();
+    content += "<br>";
+    content += getPostdata();
     content += html.getClosingBody();
     content += html.getClosingHtml();
 
@@ -44,4 +46,12 @@ std::string Content::getContent() {
 
     header += content;
     return header;
+}
+
+void Content::setPostdata(std::string postdata) {
+    this->postdata = postdata;
+}
+
+std::string Content::getPostdata() {
+    return postdata;
 }

@@ -57,6 +57,7 @@ void do_read(tcp::socket& tcp_socket, yield_context yield) {
 
 void do_write(tcp::socket& tcp_socket, yield_context yield) {
     Content content;
+    content.setPostdata(postdata);
     string data = content.getContent();
     cout << "do_write(), postdata: " << postdata << endl;
     async_write(tcp_socket, buffer(data), yield);
