@@ -56,7 +56,7 @@ void do_read(tcp::socket& tcp_socket, yield_context yield) {
         cout << endl << "POST request" << endl << endl;
     }
 
-    // If form data is arriving in a separate ip package.
+    // If form data is arriving in a separate ip packet.
     if (is_post && bytes[length] == '\0' && bytes[length-1] == '\n' && bytes[length-2] == '\r') {
         size_t additional_length = tcp_socket.async_read_some(buffer(additional_bytes), yield);
         // Move back and overwrite delimiter and copy.
