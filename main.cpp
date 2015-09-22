@@ -90,7 +90,6 @@ void do_accept(yield_context yield) {
         tcp::socket *tcp_socket = new tcp::socket {ioservice};
         tcp_acceptor.async_accept(*tcp_socket, yield);
         spawn(ioservice, [&] (yield_context yield) { do_read(*tcp_socket, yield); });
-//        spawn(ioservice, [&] (yield_context yield) { do_write(*tcp_socket, yield); });
     }
 }
 
