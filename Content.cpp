@@ -11,6 +11,8 @@ Content::~Content() { }
 std::string Content::getContent() {
     Html html {};
     html.setSiteTitle("Tabula content server");
+    Script script {};
+    script.setScript(script.getJqueryVersion());
     Form form {"user"};
     form.setMethod("post");
     Input button {"submit"};
@@ -36,6 +38,7 @@ std::string Content::getContent() {
     content += form.getClosingElement();
     content += "<br>";
     content += recode.decode();
+    content += script.getScript();
     content += html.getClosingBody();
     content += html.getClosingHtml();
 

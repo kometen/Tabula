@@ -9,12 +9,14 @@
 
 class Html {
 private:
+    // const
     const std::string doctype = "<!DOCTYPE html>";
     const std::string body = "body";
     const std::string head = "head";
     const std::string html = "html";
     const std::string meta = "<meta charset=\"utf-8\">";
-    const std::string title = "title";
+    // non-const
+    std::string title = "title";
     std::string siteTitle;
 
 public:
