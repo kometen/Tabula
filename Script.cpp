@@ -4,12 +4,20 @@
 
 #include "Script.h"
 
-void Script::setJqueryVersion(std::string version) {
-    jquery = "//code.jquery.com/jquery-" + version + ".min.js";
+void Script::setjQueryVersion(std::string version) {
+    jQuery = "//code.jquery.com/jquery-" + version + ".min.js";
 }
 
-std::string Script::getJqueryVersion() {
-    return jquery;
+std::string Script::getjQueryVersion() {
+    return jQuery;
+}
+
+void Script::setjQueryMobileVersion(std::string version) {
+    jQueryMobile = "//code.jquery.com/mobile/1.4.5/jquery.mobile-" + version + ".min.js";
+}
+
+std::string Script::getjQueryMobileVersion() {
+    return jQueryMobile;
 }
 
 std::string Script::getScript() {

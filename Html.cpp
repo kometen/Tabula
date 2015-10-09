@@ -3,6 +3,7 @@
 //
 
 #include "Html.h"
+#include "Link.h"
 
 Html::Html() { };
 Html::~Html() { };
@@ -36,10 +37,13 @@ std::string Html::getClosingHtml() {
 }
 
 std::string Html::getHead() {
+    Link jQueryMobileStylesheet {};
+    jQueryMobileStylesheet.setLink(jQueryMobileStylesheet.getjQueryMobileStylesheetVersion());
     std::string data = "";
     data += getOpeningHead();
-    data += getSiteTitle();
     data += getMeta();
+    data += getSiteTitle();
+    data += jQueryMobileStylesheet.getLink();
     data += getClosingHead();
     return data;
 }
